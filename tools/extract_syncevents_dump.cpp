@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 #include "sc2replay/replay.h"
-#include "sc2replay/messageevents.h"
+#include "sc2replay/syncevents.h"
 
 namespace sc = sc2replay;
 
@@ -10,7 +10,7 @@ int main( int argc, char** argv )
 {
   if ( argc != 3 )
   {
-    std::cerr << "Usage: extract_messageevents_dump <replay file> <dump file>" << std::endl;
+    std::cerr << "Usage: extract_syncevents_dump <replay file> <dump file>" << std::endl;
     return EXIT_FAILURE;
   }
   
@@ -27,7 +27,7 @@ int main( int argc, char** argv )
   
   replay.getMessageEvents().exportDump( argv[2] );
   
-  std::cout << "Replay message events successfully extracted to \"" << argv[2] << "\"." << std::endl;
+  std::cout << "Replay sync events successfully extracted to \"" << argv[2] << "\"." << std::endl;
   
   return EXIT_SUCCESS;
 }
