@@ -1,0 +1,6 @@
+#summary A preliminary UML diagram for the project layout.
+#labels UML,project,layout
+
+= Proposed UML diagram =
+
+http://filer.zeta-two.com/Starcraft2Replay.png
