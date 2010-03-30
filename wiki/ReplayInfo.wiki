@@ -770,6 +770,7 @@ struct Unknown1E2 : public BitStructure
 {
   virtual void serialize( const Bitstream& stream, unsigned char size=0, unsigned int min=0, unsigned int max=0 )
   {
+    //------------------- NOT WORKING ATM -------------------
     int enumeration;
     stream.read( enumeration, 3 ); unknown1E3 = (Unknown19B)enumeration;
     
@@ -793,6 +794,7 @@ struct Unknown1E2 : public BitStructure
     
     stream.align();
     unknown1EB.serialize( stream, 6 );
+    //-------------------------------------------------------
   }
 
   Unknown19B        unknown1E3;
