@@ -187,7 +187,7 @@ void MessageEvents::load( const uint8_t* buffer, unsigned long size )
     
     messages_.push_back( message );
     
-    if ( offset>=size )
+    if ( offset >= size )
       break;
   }
 }

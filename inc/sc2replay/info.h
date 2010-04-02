@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "mpq/mpqlib.h"
+
 namespace sc2replay
 {
 

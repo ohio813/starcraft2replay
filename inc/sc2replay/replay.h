@@ -6,12 +6,14 @@
 #include "sc2replay/messageevents.h"
 #include "sc2replay/syncevents.h"
 
+#include "mpq/mpqarchive.h"
+
 #include <string>
 
 namespace sc2replay
 {
 
-class Replay
+	class Replay : public MPQArchive
 {
 public:
   explicit Replay( const std::string& filename );
@@ -19,7 +21,7 @@ public:
   
 public:
   // Load a starcraft 2 replay file
-  void load( const std::string& filename );
+  void Load();
   
 public:
   bool isValid() const;
