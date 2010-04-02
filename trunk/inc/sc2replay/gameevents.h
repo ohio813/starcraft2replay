@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "mpq/mpqlib.h"
+
 namespace sc2replay
 {
 
