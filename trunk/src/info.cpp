@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-namespace SC2Replay
+namespace sc2replay
 {
 
 Info::Info()
@@ -14,7 +14,7 @@ Info::Info()
 
 Info::~Info()
 {
-	delete [] buffer_;
+  delete [] buffer_;
 }
 
 void Info::load( const uint8_t* buffer, off_t size )
