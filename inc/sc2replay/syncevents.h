@@ -1,16 +1,12 @@
 #ifndef SC2REPLAY_SYNCEVENTS_H
 #define SC2REPLAY_SYNCEVENTS_H
 
+#include "sc2replay/types.h"
+
 #include <string>
 
-#include "mpq/mpqlib.h"
-
-namespace SC2Replay
+namespace sc2replay
 {
-
-/**
- * NOT IMPLEMENTED YET
- */
 
 class SyncEvents
 {
