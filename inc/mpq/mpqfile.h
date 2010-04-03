@@ -3,22 +3,23 @@
 
 #include "mpqlib.h"
 
-class MPQFile
+namespace SC2Replay
 {
-public:
-	MPQFile(FilePtr file);
-	~MPQFile();
+	class MPQFile
+	{
+	public:
+		MPQFile(FilePtr file);
+		~MPQFile();
 
-	void Open();
+		FileSize getFileSize() const;
+		const BufferType *getContents() const;
+	private:
+		MPQFile();
 
-	FileSize getFileSize() const;
-	BufferType *getContents() const;
-private:
-	MPQFile();
-
-	FilePtr _File;
-	FileSize _FileSize;
-	BufferType *_Contents;
-};
+		FilePtr _File;
+		FileSize _FileSize;
+		BufferType *_Contents;
+	};
+}
 
 #endif

@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-namespace sc2replay
+namespace SC2Replay
 {
 
 SyncEvents::SyncEvents()

@@ -5,7 +5,7 @@
 
 #include "mpq/mpqlib.h"
 
-namespace sc2replay
+namespace SC2Replay
 {
 
 /**

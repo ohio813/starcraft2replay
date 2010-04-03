@@ -1,5 +1,7 @@
 #include "mpq/mpqarchive.h"
 
+namespace SC2Replay
+{
 MPQArchive::MPQArchive(const std::string &archiveFilename)
 {
 	Load(archiveFilename);
@@ -25,6 +27,7 @@ void MPQArchive::Unload()
 #ifdef BUILD_LIBMPQ
 	libmpq__archive_close(_Archive);
 #else // StormLib
+	
 	SFileCloseArchive(_Archive);
 #endif
 }
@@ -44,4 +47,5 @@ MPQFile *MPQArchive::openFile(const std::string &filename)
 	//TODO: Exception handling
 	openedFile = new MPQFile(file);
 	return openedFile;
+}
 }

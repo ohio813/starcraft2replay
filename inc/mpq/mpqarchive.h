@@ -4,6 +4,8 @@
 #include "mpqlib.h"
 #include "mpqfile.h"
 
+namespace SC2Replay
+{
 class MPQArchive
 {
 public:
@@ -18,5 +20,6 @@ private:
 
 	ArchivePtr _Archive;
 };
+}
 
 #endif
