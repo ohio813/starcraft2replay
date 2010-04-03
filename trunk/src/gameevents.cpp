@@ -2,42 +2,41 @@
 
 #include <fstream>
 
-namespace sc2replay
+namespace SC2Replay
 {
 
-GameEvents::GameEvents()
-  : buffer_    ( 0 ),
-    bufferSize_( 0 )
-{
-}
+	GameEvents::GameEvents()
+	  : buffer_(0), bufferSize_(0)
+	{
+	}
 
-GameEvents::~GameEvents()
-{
-  delete [] buffer_;
-}
+	GameEvents::~GameEvents()
+	{
+		delete[] buffer_;
+	}
 
-void GameEvents::load( const uint8_t* buffer, unsigned long size )
-{
-  buffer_ = new uint8_t[size];
-  std::copy( buffer, buffer+size, buffer_ );
-  bufferSize_ = size;
-}
+	void GameEvents::Load( const uint8_t* buffer, unsigned long size )
+	{
+		buffer_ = new uint8_t[size];
+		std::copy( buffer, buffer+size, buffer_ );
+		bufferSize_ = size;
+	}
 
-off_t GameEvents::getBufferSize() const
-{
-  return bufferSize_;
-}
+	off_t GameEvents::getBufferSize() const
+	{
+		return bufferSize_;
+	}
 
-uint8_t* GameEvents::getBuffer() const
-{
-  return buffer_;
-}
+	uint8_t* GameEvents::getBuffer() const
+	{
+		return buffer_;
+	}
 
-void GameEvents::exportDump( const std::string& filename ) const
-{
-  std::ofstream file( filename.c_str(), std::ios::binary );
-  file.write( (const char*)buffer_, bufferSize_ );
-  file.close();
-}
+	void GameEvents::exportDump( const std::string& filename ) const
+	{
+		std::ofstream file( filename.c_str(), std::ios::binary );
+		file.write( (const char*)buffer_, bufferSize_ );
+		file.close();
+	}
 
 }
