@@ -53,6 +53,9 @@ private:
   const uint8_t*    buffer_;
   const std::string filename_;
   const MPQArchive& archive_;
+  
+private:
+  MPQFile( const MPQFile& ); // Not copyable
 };
 
 } // namespace sc2replay
