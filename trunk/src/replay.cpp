@@ -45,9 +45,9 @@ void Replay::load( const std::string& filename )
   uint32_t number;
   off_t    size;
 #else // StormLib
-  HANDLE   archive = 0;
-  HANDLE   file    = 0;
-  uint32_t size    = 0;
+  HANDLE archive = 0;
+  HANDLE file    = 0;
+  DWORD  size    = 0;
   
   bool good = SFileOpenArchive( filename.c_str(), 0, 0, &archive );
   
