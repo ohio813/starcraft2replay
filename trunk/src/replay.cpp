@@ -1,11 +1,8 @@
 #include "sc2replay/replay.h"
 
-#ifdef BUILD_LIBMPQ
-#  include <libmpq/mpq.h>
-#else // StormLib
-#  include <StormLib/StormLib.h>
-#endif
+#include "sc2replay/mpq.h"
 
+#include <iostream>
 #include <fstream>
 
 namespace sc2replay
@@ -27,199 +24,36 @@ void Replay::load( const std::string& filename )
 {
   filename_ = filename;
   
-#ifdef BUILD_LIBMPQ
-  // Initialize libmpq
-  // Comment this line if using a newer version of libmpq that removed libmpq__init & libmpq__shutdown
-  libmpq__init();
+  MPQArchive archive;
   
-  // Open the MPQ archive
-  mpq_archive_s* archive;
-  int32_t err = libmpq__archive_open( &archive, filename.c_str(), -1 );
-  
-  if ( err < 0 )
-  {
-    isValid_ = false;
-    return;
-  }
-  
-  uint32_t number;
-  off_t    size;
-#else // StormLib
-  HANDLE archive = 0;
-  HANDLE file    = 0;
-  DWORD  size    = 0;
-  
-  bool good = SFileOpenArchive( filename.c_str(), 0, 0, &archive );
-  
-  if ( !good )
-  {
-    isValid_ = false;
-    return;
-  }
-#endif
-
-  
-  
-  uint8_t* buffer;
-  
-  //
-  // Replay.Info
-  //
-  {
-    // Open file and retrieve its size
-#ifdef BUILD_LIBMPQ
-    libmpq__file_number( archive, "replay.info", &number );
-    libmpq__file_unpacked_size( archive, number, &size );
-#else // StormLib
-    SFileOpenFileEx( archive, "replay.info", 0, &file );
-    size = SFileGetFileSize( file, NULL );
-#endif
-
-    // Allocate a buffer for file data
-    buffer = new uint8_t[size];
-    
-    // Fill the buffer with the file content
-#ifdef BUILD_LIBMPQ
-    libmpq__file_read( archive, number, buffer, size, NULL );
-#else // StormLib
-    SFileReadFile( file, buffer, size, &size, NULL );
-    SFileCloseFile( file );
-#endif
-    
-    // Load file
-    info_.load( buffer, size );
-    
-    // Release buffer
-    delete [] buffer;
-  }
-  
-  //
-  // Replay.Game.Events
-  //
-  {
-    // Open file and retrieve its size
-#ifdef BUILD_LIBMPQ
-    libmpq__file_number( archive, "replay.game.events", &number );
-    libmpq__file_unpacked_size( archive, number, &size );
-#else // StormLib
-    SFileOpenFileEx( archive, "replay.game.events", 0, &file );
-    size = SFileGetFileSize( file, NULL );
-#endif
-
-    // Allocate a buffer for file data
-    buffer = new uint8_t[size];
-
-    // Fill the buffer with the file content
-#ifdef BUILD_LIBMPQ
-    libmpq__file_read( archive, number, buffer, size, NULL );
-#else // StormLib
-    SFileReadFile( file, buffer, size, &size, NULL );
-    SFileCloseFile( file );
-#endif
-
-    // Load file
-    gameEvents_.load( buffer, size );
-    
-    // Release buffer
-    delete [] buffer;
-  }
-  
-  //
-  // Replay.Message.Events
-  //
-  {
-    // Open file and retrieve its size
-#ifdef BUILD_LIBMPQ
-    libmpq__file_number( archive, "replay.message.events", &number );
-    libmpq__file_unpacked_size( archive, number, &size );
-#else // StormLib
-    SFileOpenFileEx( archive, "replay.message.events", 0, &file );
-    size = SFileGetFileSize( file, NULL );
-#endif
-
-    // Allocate a buffer for file data
-    buffer = new uint8_t[size];
-
-    // Fill the buffer with the file content
-#ifdef BUILD_LIBMPQ
-    libmpq__file_read( archive, number, buffer, size, NULL );
-#else // StormLib
-    SFileReadFile( file, buffer, size, &size, NULL );
-    SFileCloseFile( file );
-#endif
-
-    // Load file
-    messageEvents_.load( buffer, size );
-
-    // Release buffer
-    delete [] buffer;
-  }
-  
-  //
-  // Replay.Sync.Events
-  //
-  {
-    // Open file and retrieve its size
-#ifdef BUILD_LIBMPQ
-    libmpq__file_number( archive, "replay.sync.events", &number );
-    libmpq__file_unpacked_size( archive, number, &size );
-#else // StormLib
-    SFileOpenFileEx( archive, "replay.sync.events", 0, &file );
-    size = SFileGetFileSize( file, NULL );
-#endif
-
-    // Allocate a buffer for file data
-    buffer = new uint8_t[size];
-
-    // Fill the buffer with the file content
-#ifdef BUILD_LIBMPQ
-    libmpq__file_read( archive, number, buffer, size, NULL );
-#else // StormLib
-    SFileReadFile( file, buffer, size, &size, NULL );
-    SFileCloseFile( file );
-#endif
-
-    // Load file
-    syncEvents_.load( buffer, size );
-
-    // Release buffer
-    delete [] buffer;
-  }
-  
-  //
-  // Replay.Save
-  //
-  {
-    // Open file and retrieve its size
-#ifdef BUILD_LIBMPQ
-    libmpq__file_number( archive, "save.jpg", &number );
-    libmpq__file_unpacked_size( archive, number, &size );
-#else // StormLib
-    SFileOpenFileEx( archive, "save.jpg", 0, &file );
-    size = SFileGetFileSize( file, NULL );
-#endif
-
-    // Allocate a buffer for file data
-    imageSize_   = size;
-    imageBuffer_ = new uint8_t[imageSize_];
-
-    // Fill the buffer with the file content
-#ifdef BUILD_LIBMPQ
-    libmpq__file_read( archive, number, imageBuffer_, size, NULL );
-#else // StormLib
-    SFileReadFile( file, imageBuffer_, size, &size, NULL );
-    SFileCloseFile( file );
-#endif
-  }
-  
-  // Close the archive
-#ifdef BUILD_LIBMPQ
-  libmpq__archive_close( archive );
-#else // StormLib
-  SFileCloseArchive( archive );
-#endif
-  
+  // Sanity check
   isValid_ = true;
+  if ( !archive.load( filename ) )
+  {
+    std::cerr << "Error loading MPQ file " << filename << "." << std::endl;
+    isValid_ = false;
+    return;
+  }
+
+  const MPQFile* infoFile    = archive.getFile( "replay.info"           );
+  const MPQFile* gameFile    = archive.getFile( "replay.game.events"    );
+  const MPQFile* syncFile    = archive.getFile( "replay.sync.events"    );
+  const MPQFile* messageFile = archive.getFile( "replay.message.events" );
+  const MPQFile* saveFile    = archive.getFile( "save.jpg"              );
+  
+  info_.load         ( infoFile->getFileContent(),    infoFile->getFileSize()    );
+  gameEvents_.load   ( gameFile->getFileContent(),    gameFile->getFileSize()    );
+  syncEvents_.load   ( syncFile->getFileContent(),    syncFile->getFileSize()    );
+  messageEvents_.load( messageFile->getFileContent(), messageFile->getFileSize() );
+  imageSize_   = saveFile->getFileSize();
+  imageBuffer_ = new uint8_t[imageSize_];
+  std::copy( saveFile->getFileContent(), saveFile->getFileContent()+imageSize_, imageBuffer_ );
+  
+  delete infoFile;
+  delete gameFile;
+  delete syncFile;
+  delete messageFile;
+  delete saveFile;
 }
 
 const Info& Replay::getInfo() const
