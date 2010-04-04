@@ -25,7 +25,7 @@ int main( int argc, char** argv )
     return EXIT_FAILURE;
   }
   
-  replay.getMessageEvents().exportDump( argv[2] );
+  replay.getSyncEvents().exportDump( argv[2] );
   
   std::cout << "Replay sync events successfully extracted to \"" << argv[2] << "\"." << std::endl;
   
