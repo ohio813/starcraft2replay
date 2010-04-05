@@ -27,6 +27,13 @@ typedef signed   long long int64_t;
 
 typedef int64_t off_t;
 
+//
+// Custom types
+//
+
+typedef uint8_t  player_t;
+typedef uint32_t timestamp_t;
+
 } // namespace sc2replay
 
 #endif // S2REPLAY_TYPES_H
