@@ -7,7 +7,7 @@ Some events have to be read bit by bit - and not byte by byte - in order to be c
 The general structure of an event is:
 
 || *Encoded timestamp* || *Event type* || *Global event flag* || *Player id* || *Event code* || *Event data* ||
-|| 8 or 16 bits || 3 bits || 1 bit || 4 bits || 16 bits || 8`*`X bits ||
+|| 8 or 16 bits || 3 bits || 1 bit || 4 bits || 8 bits || 8`*`X bits ||
 
 *Event data* field size depends on *event code* but is always a multiple of 8 bits.
 
@@ -85,7 +85,7 @@ Notice that players have the same ID in all replay files. That means you can ret
 <br/><br/>
 = Event code =
 
-This is a 16 bits (2 bytes) long field.
+This is a 8 bits (1 byte) long field.
 
 Known codes for _Initialization_ events (type = 000b):
 || *Hexadecimal value* || *Meaning* || *Event data* ||
