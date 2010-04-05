@@ -1,0 +1,107 @@
+#summary Ability codes
+
+= Terran =
+|| 0x020400 || Stop                           ||
+|| 0x020501 || Hold Fire                      ||
+|| 0x020600 || Move                           ||
+|| 0x020601 || Patrol                         ||
+|| 0x020602 || Hold position                  ||
+|| 0x020900 || Attack                         ||
+|| 0x030A00 || Point Defense Drone            ||
+|| 0x040700 || Seeker Missile                 ||
+|| 0x050500 || Set rally point                ||
+|| 0x050D00 || Stimpack (Marauder)            ||
+|| 0x050F00 || 250mm Strike Cannon            ||
+|| 0x060400 || Gather                         ||
+|| 0x060401 || Return cargo                   ||
+|| 0x060800 || Cancel                         ||
+|| 0x060D00 || Build Command Center           ||
+|| 0x060D01 || Build Supply Depot             ||
+|| 0x060D02 || Build Refinery                 ||
+|| 0x060D03 || Build Barracks                 ||
+|| 0x060D04 || Build Engineering Bay          ||
+|| 0x060D05 || Build Missile Turret           ||
+|| 0x060D06 || Build Bunker                   ||
+|| 0x060D08 || Build Sensor Tower             ||
+|| 0x060D09 || Build Ghost Academy            ||
+|| 0x060D0A || Build Factory                  ||
+|| 0x060D0B || Build Starport                 ||
+|| 0x060D0D || Build Armory                   ||
+|| 0x060D0F || Build Fusion Core              ||
+|| 0x060F00 || Stimpack (Marine)              ||
+|| 0x070000 || Cloack (Ghost)                 ||
+|| 0x070001 || Decloack (Ghost)               ||
+|| 0x070100 || Sniper Round                   ||
+|| 0x070200 || Heal (Medivac)                 ||
+|| 0x070300 || Siege Mode (Siege Tank)        ||
+|| 0x070400 || Tank Mode (Siege Tank)         ||
+|| 0x070500 || Cloack (Banshee)               ||
+|| 0x070501 || Decloack (Banshee)             ||
+|| 0x070600 || Load (Medivac)                 ||
+|| 0x070602 || Unload all (Medivac)           ||
+|| 0x070800 || Yamato Cannon                  ||
+|| 0x070900 || Assault Mode (Viking)          ||
+|| 0x070A00 || Fighter Mode (Viking)          ||
+|| 0x070C01 || Unload all (Command Center)    ||
+|| 0x070C04 || Load (Command Center)          ||
+|| 0x070D00 || Lift off (Command Center)      ||
+|| 0x070E00 || Land (Command Center)          ||
+|| 0x070F00 || Build Tech Lab (Barracks)      ||
+|| 0x070F01 || Build Reactor (Barracks)       ||
+|| 0x080100 || Build Tech Lab (Factory)       ||
+|| 0x080300 || Build Tech Lab (Starport)      ||
+|| 0x080700 || Train SCV                      ||
+|| 0x080900 || Lower (Supply Depot)           ||
+|| 0x080A00 || Raise (Supply Depot)           ||
+|| 0x080B00 || Train Marine                   ||
+|| 0x080B01 || Train Reaper                   ||
+|| 0x080B02 || Train Ghost                    ||
+|| 0x080B03 || Train Marauder                 ||
+|| 0x080C01 || Train Siege Tank               ||
+|| 0x080C04 || Train Thor                     ||
+|| 0x080C05 || Train Hellion                  ||
+|| 0x080D00 || Train Medivac                  ||
+|| 0x080D01 || Train Banshee                  ||
+|| 0x080D02 || Train Raven                    ||
+|| 0x080D03 || Train Battlecruiser            ||
+|| 0x080D04 || Train Viking                   ||
+|| 0x080E00 || Upgrade Hi-Sec Auto Tracking   ||
+|| 0x080E01 || Upgrade Building Armor         ||
+|| 0x080E02 || Upgrade Infantry Weapons 1     ||
+|| 0x080E03 || Upgrade Infantry Weapons 2     ||
+|| 0x080E04 || Upgrade Infantry Weapons 3     ||
+|| 0x080E06 || Upgrade Infantry Armor 1       ||
+|| 0x080E07 || Upgrade Infantry Armor 2       ||
+|| 0x080E08 || Upgrade Infantry Armor 3       ||
+|| 0x080E05 || Upgrade Neosteel Frame         ||
+|| 0x080F03 || Research Nitro Packs           ||
+|| 0x090000 || Arm Silo with Nuke             ||
+|| 0x090100 || Research Stimpack              ||
+|| 0x090101 || Research Combat Shield         ||
+|| 0x090200 || Research Siege Tech            ||
+|| 0x090201 || Research Infernal Pre-Igniter  ||
+|| 0x090300 || Research Cloacking Field       ||
+|| 0x090302 || Research Caduceus Reactor      ||
+|| 0x090303 || Research Corvid Reactor        ||
+|| 0x090306 || Research Seeker Missiles       ||
+|| 0x090307 || Research Durable Materials     ||
+|| 0x090400 || Research Personal Cloacking    ||
+|| 0x090401 || Research Moebius Reactor       ||
+|| 0x090502 || Upgrade Vehicle Plating 1      ||
+|| 0x090503 || Upgrade Vehicle Plating 2      ||
+|| 0x090504 || Upgrade Vehicle Plating 3      ||
+|| 0x090505 || Upgrade Vehicle Weapons 1      ||
+|| 0x090506 || Upgrade Vehicle Weapons 2      ||
+|| 0x090507 || Upgrade Vehicle Weapons 3      ||
+|| 0x09050B || Upgrade Ship Weapons 1         ||
+|| 0x09050C || Upgrade Ship Weapons 2         ||
+|| 0x09050D || Upgrade Ship Weapons 3         ||
+|| 0x090508 || Upgrade Ship Plating 1         ||
+|| 0x090509 || Upgrade Ship Plating 2         ||
+|| 0x09050A || Upgrade Ship Plating 3         ||
+|| 0x0C0700 || Upgrade to Planetary Fortress  ||
+|| 0x0D0600 || Research Weapon Refit          ||
+|| 0x0D0601 || Research Behemoth Reactor      ||
+|| 0x0D0900 || Tac Nuclear Strike             ||
+|| 0x0D0C00 || EMP Round                      ||
+|| 0x0F0400 || Auto-Turret                    ||
