@@ -114,3 +114,7 @@
 || 0x0D0900 || Tac Nuclear Strike             ||
 || 0x0D0C00 || EMP Round                      ||
 || 0x0F0400 || Auto-Turret                    ||
+
+|| *Protoss* ||
+
+|| *Zerg* ||
