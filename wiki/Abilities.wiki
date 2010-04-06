@@ -10,20 +10,12 @@
 || 0x060400 || Gather ||
 
 || *Terran* ||
-|| 0x020400 || Stop                           ||
-|| 0x020501 || Hold Fire                      ||
-|| 0x020600 || Move                           ||
-|| 0x020601 || Patrol                         ||
-|| 0x020602 || Hold position                  ||
-|| 0x020900 || Attack                         ||
 || 0x030A00 || Point Defense Drone            ||
 || 0x040700 || Seeker Missile                 ||
 || 0x050500 || Set rally point                ||
 || 0x050D00 || Stimpack (Marauder)            ||
 || 0x050F00 || 250mm Strike Cannon            ||
-|| 0x060400 || Gather                         ||
 || 0x060401 || Return cargo                   ||
-|| 0x060800 || Cancel                         ||
 || 0x060D00 || Build Command Center           ||
 || 0x060D01 || Build Supply Depot             ||
 || 0x060D02 || Build Refinery                 ||
