@@ -67,5 +67,79 @@ int main( int argc, char** argv )
     std::cout << "  [ " << it->timestamp << " " << (unsigned int)it->player << " " << it->type << " " << it->text << " ]" << std::endl;
   std::cout << std::endl;
   
+  std::cout << std::endl << "--- Game events ---" << std::endl;
+  const sc::GameEvents& gameEvents = replay.getGameEvents();
+  sc::GameEvents::const_iterator it = gameEvents.begin();
+  for (; it != gameEvents.end(); ++it )
+  {
+     switch ( (*it)->code )
+      {
+        case sc::INITIALIZATION_SPAWN:
+        {
+          std::cout << "[INITIALIZATION_SPAWN player:" << (int)(*it)->player << "]" << std::endl;
+        } break;
+        
+        case sc::INITIALIZATION_START:
+        {
+          std::cout << "[INITIALIZATION_START]" << std::endl;
+        } break;
+        
+        case sc::ACTION_QUIT:
+        {
+          std::cout << "[ACTION_QUIT]" << std::endl;
+        } break;
+        
+        case sc::ACTION_ABILITY:
+        {
+          std::cout << "[ACTION_ABILITY]" << std::endl;
+        } break;
+        
+        case sc::ACTION_SEND_RESOURCE:
+        {
+          std::cout << "[ACTION_SEND_RESOURCE]" << std::endl;
+        } break;
+        
+        case sc::ACTION_SELECTION:
+        {
+          std::cout << "[ACTION_SELECTION]" << std::endl;
+        } break;
+        
+        case sc::ACTION_USE_HOTKEY:
+        {
+          std::cout << "[ACTION_USE_HOTKEY]" << std::endl;
+        } break;
+        
+        case sc::ACTION_UPDATE_HOTKEY:
+        {
+          std::cout << "[ACTION_UPDATE_HOTKEY]" << std::endl;
+        } break;
+        
+        case sc::REPLAY_MOVE_CAMERA:
+        {
+          std::cout << "[REPLAY_MOVE_CAMERA]" << std::endl;
+        } break;
+        
+        case sc::INACTION_SYNCHRONIZATION:
+        {
+          std::cout << "[INACTION_SYNCHRONIZATION]" << std::endl;
+        } break;
+        
+        case sc::INACTION_SEND_REQUEST:
+        {
+          std::cout << "[INACTION_SEND_REQUEST]" << std::endl;
+        } break;
+        
+        case sc::INACTION_CANCEL_REQUEST:
+        {
+          std::cout << "[INACTION_CANCEL_REQUEST]" << std::endl;
+        } break;
+        
+        case sc::SYSTEM_SYNCHRONIZATION:
+        {
+          std::cout << "[SYSTEM_SYNCHRONIZATION]" << std::endl;
+        } break;
+      }
+  }
+  
   return EXIT_SUCCESS;
 }
