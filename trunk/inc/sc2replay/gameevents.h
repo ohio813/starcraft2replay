@@ -3,17 +3,22 @@
 
 #include "sc2replay/types.h"
 
+#include <list>
 #include <string>
 
 namespace sc2replay
 {
 
+class GameEvent;
+
 class GameEvents
 {
+// --- Ctors / Dtors
 public:
   GameEvents();
   ~GameEvents();
-  
+
+// --- Methods
 public:
   void load( const uint8_t* data, unsigned long size );
   
@@ -23,15 +28,47 @@ public:
   
 public:
   void exportDump( const std::string& filename ) const;
+
+// --- Parser
+public:
+  void parse();
   
+  void parseHeader           ( off_t& offset, GameEvent& event );
+  void parseSpawnEvent       ( off_t& offset, GameEvent& event );
+  void parseStartEvent       ( off_t& offset, GameEvent& event );
+  void parseQuitEvent        ( off_t& offset, GameEvent& event );
+  void parseAbilityEvent     ( off_t& offset, GameEvent& event );
+  void parseSendResourceEvent( off_t& offset, GameEvent& event );
+  void parseSelectionEvent   ( off_t& offset, GameEvent& event );
+  void parseUseHotkey        ( off_t& offset, GameEvent& event );
+  void parseUpdateHotkey     ( off_t& offset, GameEvent& event );
+  void parseCameraHotkey     ( off_t& offset, GameEvent& event );
+  void parseSyncEvent        ( off_t& offset, GameEvent& event );
+  void parseSendRequest      ( off_t& offset, GameEvent& event );
+  void parseCancelRequest    ( off_t& offset, GameEvent& event );
+  void parseSystemSync       ( off_t& offset, GameEvent& event );
+  
+// --- List interface
+public:
+  typedef std::list<GameEvent*>     EventList;
+  typedef EventList::const_iterator const_iterator;
+  
+public:
+  EventList::const_iterator begin() const;
+  EventList::const_iterator end()   const;
+  
+  size_t size() const;
+  
+// --- Attributes
 private:
-  uint8_t* buffer_;
-  off_t    bufferSize_;
+  uint8_t*  buffer_;
+  off_t     bufferSize_;
+  EventList events_;
 };
 
-//
+//==================================================
 // EVENTS STRUCTURES
-//
+//==================================================
 
 enum EventType
 {
@@ -183,7 +220,7 @@ enum AbilityCode
 
 struct GameEvent
 {
-  GameEvent( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
+  GameEvent( timestamp_t ti=0, EventType ty=INITIALIZATION, EventFlag fl=PLAYER, player_t pl=0, EventCode co=INITIALIZATION_SPAWN )
     : timestamp(ti), type(ty), flag(fl), player(pl), code(co) {}
   
   timestamp_t timestamp;
@@ -195,80 +232,67 @@ struct GameEvent
 
 struct InitializationSpawn : public GameEvent
 {
-  InitializationSpawn( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  InitializationSpawn( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct InitializationStart : public GameEvent
 {
-  InitializationStart( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  InitializationStart( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionQuit : public GameEvent
 {
-  ActionQuit( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionQuit( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionAbility : public GameEvent
 {
-  ActionAbility( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionAbility( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionSendResource : public GameEvent
 {
-  ActionSendResource( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionSendResource( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionSelection : public GameEvent
 {
-  ActionSelection( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionSelection( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionUseHotkey : public GameEvent
 {
-  ActionUseHotkey( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionUseHotkey( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ActionUpdateHotkey : public GameEvent
 {
-  ActionUpdateHotkey( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ActionUpdateHotkey( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct ReplayMoveCamera : public GameEvent
 {
-  ReplayMoveCamera( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  ReplayMoveCamera( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct InactionSynchronization : public GameEvent
 {
-  InactionSynchronization( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  InactionSynchronization( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct InactionSendRequest : public GameEvent
 {
-  InactionSendRequest( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  InactionSendRequest( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct InactionCancelRequest : public GameEvent
 {
-  InactionCancelRequest( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  InactionCancelRequest( const GameEvent& e ) : GameEvent(e) {}
 };
 
 struct SystemSynchronization : public GameEvent
 {
-  SystemSynchronization( timestamp_t ti, EventType ty, EventFlag fl, player_t pl, EventCode co )
-    : GameEvent(ti,ty,fl,pl,co) {}
+  SystemSynchronization( const GameEvent& e ) : GameEvent(e) {}
 };
 
 } // namespace sc2replay
