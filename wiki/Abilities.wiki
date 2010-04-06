@@ -8,7 +8,8 @@
 || 0x020900 || Attack ||
 || 0x060800 || Cancel ||
 || 0x060400 || Gather ||
-|| *Terran* ||
+
+|| Terran ||
 || 0x020400 || Stop                           ||
 || 0x020501 || Hold Fire                      ||
 || 0x020600 || Move                           ||
