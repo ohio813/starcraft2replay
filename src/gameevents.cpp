@@ -1,6 +1,7 @@
 #include "sc2replay/gameevents.h"
 
 #include <fstream>
+#include <iostream>
 
 namespace sc2replay
 {
@@ -13,6 +14,9 @@ GameEvents::GameEvents()
 
 GameEvents::~GameEvents()
 {
+  EventList::const_iterator it = begin();
+  for (; it!=end(); ++it )
+    delete *it;
   delete [] buffer_;
 }
 
@@ -74,57 +78,99 @@ void GameEvents::parse()
     {
       case INITIALIZATION_SPAWN:
       {
-        parseSpawnEvent( offset, e );
-        events_.push_back( new InitializationSpawn(e) );
+        events_.push_back( parseSpawnEvent(offset,e) );
       } break;
+      
       case INITIALIZATION_START:
       {
-        parseStartEvent( offset, e );
-        events_.push_back( new InitializationStart(e) );
+        events_.push_back( parseStartEvent(offset,e) );
       } break;
+      
       case ACTION_QUIT:
       {
-        return; // Not implemented at the moment
+        events_.push_back( parseQuitEvent(offset,e) );
       } break;
+      
       case ACTION_ABILITY:
       {
+        std::cerr << "Parsing trap [ACTION_ABILITY] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
+      
       case ACTION_SEND_RESOURCE:
       {
-        return; // Not implemented at the moment
+        events_.push_back( parseQuitEvent(offset,e) );
       } break;
+      
       case ACTION_SELECTION:
       {
+        std::cerr << "Parsing trap [ACTION_SELECTION] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
-      case ACTION_USE_HOTKEY:
+      
+      case ACTION_USE_HOTKEY0:
+      case ACTION_USE_HOTKEY1:
+      case ACTION_USE_HOTKEY2:
+      case ACTION_USE_HOTKEY3:
+      case ACTION_USE_HOTKEY4:
+      case ACTION_USE_HOTKEY5:
+      case ACTION_USE_HOTKEY6:
+      case ACTION_USE_HOTKEY7:
+      case ACTION_USE_HOTKEY8:
+      case ACTION_USE_HOTKEY9:
       {
+        std::cerr << "Parsing trap [ACTION_USE_HOTKEY] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
-      case ACTION_UPDATE_HOTKEY:
+      
+      case ACTION_UPDATE_HOTKEY0:
+      case ACTION_UPDATE_HOTKEY1:
+      case ACTION_UPDATE_HOTKEY2:
+      case ACTION_UPDATE_HOTKEY3:
+      case ACTION_UPDATE_HOTKEY4:
+      case ACTION_UPDATE_HOTKEY5:
+      case ACTION_UPDATE_HOTKEY6:
+      case ACTION_UPDATE_HOTKEY7:
+      case ACTION_UPDATE_HOTKEY8:
+      case ACTION_UPDATE_HOTKEY9:
       {
+        std::cerr << "Parsing trap [ACTION_UPDATE_HOTKEY] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
+      
       case REPLAY_MOVE_CAMERA:
       {
-        return; // Not implemented at the moment
+        events_.push_back( parseCameraEvent(offset,e) );
       } break;
+      
       case INACTION_SYNCHRONIZATION:
       {
+        std::cerr << "Parsing trap [INACTION_SYNCHRONIZATION] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
+      
       case INACTION_SEND_REQUEST:
       {
+        std::cerr << "Parsing trap [INACTION_SEND_REQUEST] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
+      
       case INACTION_CANCEL_REQUEST:
       {
+        std::cerr << "Parsing trap [INACTION_CANCEL_REQUEST] @" << offset << std::endl;
         return; // Not implemented at the moment
       } break;
+      
       case SYSTEM_SYNCHRONIZATION:
       {
+        std::cerr << "Parsing trap [SYSTEM_SYNCHRONIZATION] @" << offset << std::endl;
         return; // Not implemented at the moment
+      } break;
+      
+      default:
+      {
+        std::cerr << "Parsing trap... aborting." << std::endl;
+        return;
       } break;
     }
   }
@@ -162,56 +208,125 @@ void GameEvents::parseHeader( off_t& offset, GameEvent& event )
   offset += 1;
 }
 
-void GameEvents::parseSpawnEvent( off_t& offset, GameEvent& event )
+InitializationSpawn* GameEvents::parseSpawnEvent( off_t& offset, GameEvent& event )
 {
+  InitializationSpawn* e = new InitializationSpawn(event);
+  return e;
 }
 
-void GameEvents::parseStartEvent( off_t& offset, GameEvent& event )
+InitializationStart* GameEvents::parseStartEvent( off_t& offset, GameEvent& event )
 {
+  InitializationStart* e = new InitializationStart(event);
+  return e;
 }
 
-void GameEvents::parseQuitEvent( off_t& offset, GameEvent& event )
+ActionQuit* GameEvents::parseQuitEvent( off_t& offset, GameEvent& event )
 {
+  ActionQuit* e = new ActionQuit(event);
+  return e;
 }
 
-void GameEvents::parseAbilityEvent( off_t& offset, GameEvent& event )
+ActionAbility* GameEvents::parseAbilityEvent( off_t& offset, GameEvent& event )
 {
+  ActionAbility* e = new ActionAbility(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseSendResourceEvent( off_t& offset, GameEvent& event )
+ActionSendResource* GameEvents::parseSendResourceEvent( off_t& offset, GameEvent& event )
 {
+  ActionSendResource* e = new ActionSendResource(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseSelectionEvent( off_t& offset, GameEvent& event )
+ActionSelection* GameEvents::parseSelectionEvent( off_t& offset, GameEvent& event )
 {
+  ActionSelection* e = new ActionSelection(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseUseHotkey( off_t& offset, GameEvent& event )
+ActionUseHotkey* GameEvents::parseUseHotkey( off_t& offset, GameEvent& event )
 {
+  ActionUseHotkey* e = new ActionUseHotkey(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseUpdateHotkey( off_t& offset, GameEvent& event )
+ActionUpdateHotkey* GameEvents::parseUpdateHotkey( off_t& offset, GameEvent& event )
 {
+  ActionUpdateHotkey* e = new ActionUpdateHotkey(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseCameraHotkey( off_t& offset, GameEvent& event )
+ReplayMoveCamera* GameEvents::parseCameraEvent( off_t& offset, GameEvent& event )
 {
+  ReplayMoveCamera* e = new ReplayMoveCamera(event);
+  
+  e->x = *(uint32_t*)(buffer_+offset);
+  offset += 4;
+  
+  e->y = *(uint32_t*)(buffer_+offset);
+  offset += 4;
+  
+  e->horizontal = *(uint32_t*)(buffer_+offset);
+  offset += 4;
+  
+  e->vertical = *(uint32_t*)(buffer_+offset);
+  offset += 4;
+  
+  e->unknown = *(uint32_t*)(buffer_+offset);
+  offset += 4;
+  
+  return e;
 }
 
-void GameEvents::parseSyncEvent( off_t& offset, GameEvent& event )
+InactionSynchronization* GameEvents::parseSyncEvent( off_t& offset, GameEvent& event )
 {
+  InactionSynchronization* e = new InactionSynchronization(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseSendRequest( off_t& offset, GameEvent& event )
+InactionSendRequest* GameEvents::parseSendRequest( off_t& offset, GameEvent& event )
 {
+  InactionSendRequest* e = new InactionSendRequest(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseCancelRequest( off_t& offset, GameEvent& event )
+InactionCancelRequest* GameEvents::parseCancelRequest( off_t& offset, GameEvent& event )
 {
+  InactionCancelRequest* e = new InactionCancelRequest(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
-void GameEvents::parseSystemSync( off_t& offset, GameEvent& event )
+SystemSynchronization* GameEvents::parseSystemSync( off_t& offset, GameEvent& event )
 {
+  SystemSynchronization* e = new SystemSynchronization(event);
+  
+  // Not implemented at the moment
+  
+  return e;
 }
 
 }

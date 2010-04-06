@@ -10,6 +10,19 @@ namespace sc2replay
 {
 
 class GameEvent;
+class InitializationSpawn;
+class InitializationStart;
+class ActionQuit;
+class ActionAbility;
+class ActionSendResource;
+class ActionSelection;
+class ActionUseHotkey;
+class ActionUpdateHotkey;
+class ReplayMoveCamera;
+class InactionSynchronization;
+class InactionSendRequest;
+class InactionCancelRequest;
+class SystemSynchronization;
 
 class GameEvents
 {
@@ -34,19 +47,20 @@ public:
   void parse();
   
   void parseHeader           ( off_t& offset, GameEvent& event );
-  void parseSpawnEvent       ( off_t& offset, GameEvent& event );
-  void parseStartEvent       ( off_t& offset, GameEvent& event );
-  void parseQuitEvent        ( off_t& offset, GameEvent& event );
-  void parseAbilityEvent     ( off_t& offset, GameEvent& event );
-  void parseSendResourceEvent( off_t& offset, GameEvent& event );
-  void parseSelectionEvent   ( off_t& offset, GameEvent& event );
-  void parseUseHotkey        ( off_t& offset, GameEvent& event );
-  void parseUpdateHotkey     ( off_t& offset, GameEvent& event );
-  void parseCameraHotkey     ( off_t& offset, GameEvent& event );
-  void parseSyncEvent        ( off_t& offset, GameEvent& event );
-  void parseSendRequest      ( off_t& offset, GameEvent& event );
-  void parseCancelRequest    ( off_t& offset, GameEvent& event );
-  void parseSystemSync       ( off_t& offset, GameEvent& event );
+  
+  InitializationSpawn*     parseSpawnEvent       ( off_t& offset, GameEvent& event );
+  InitializationStart*     parseStartEvent       ( off_t& offset, GameEvent& event );
+  ActionQuit*              parseQuitEvent        ( off_t& offset, GameEvent& event );
+  ActionAbility*           parseAbilityEvent     ( off_t& offset, GameEvent& event );
+  ActionSendResource*      parseSendResourceEvent( off_t& offset, GameEvent& event );
+  ActionSelection*         parseSelectionEvent   ( off_t& offset, GameEvent& event );
+  ActionUseHotkey*         parseUseHotkey        ( off_t& offset, GameEvent& event );
+  ActionUpdateHotkey*      parseUpdateHotkey     ( off_t& offset, GameEvent& event );
+  ReplayMoveCamera*        parseCameraEvent      ( off_t& offset, GameEvent& event );
+  InactionSynchronization* parseSyncEvent        ( off_t& offset, GameEvent& event );
+  InactionSendRequest*     parseSendRequest      ( off_t& offset, GameEvent& event );
+  InactionCancelRequest*   parseCancelRequest    ( off_t& offset, GameEvent& event );
+  SystemSynchronization*   parseSystemSync       ( off_t& offset, GameEvent& event );
   
 // --- List interface
 public:
@@ -97,8 +111,26 @@ enum EventCode
   ACTION_ABILITY           = 0x0B,
   ACTION_SEND_RESOURCE     = 0x2F,
   ACTION_SELECTION         = 0xAC,
-  ACTION_USE_HOTKEY        = 0x0D,
-  ACTION_UPDATE_HOTKEY     = 0x0C,
+  ACTION_USE_HOTKEY0       = 0x0D,
+  ACTION_USE_HOTKEY1       = 0x1D,
+  ACTION_USE_HOTKEY2       = 0x2D,
+  ACTION_USE_HOTKEY3       = 0x3D,
+  ACTION_USE_HOTKEY4       = 0x4D,
+  ACTION_USE_HOTKEY5       = 0x5D,
+  ACTION_USE_HOTKEY6       = 0x6D,
+  ACTION_USE_HOTKEY7       = 0x7D,
+  ACTION_USE_HOTKEY8       = 0x8D,
+  ACTION_USE_HOTKEY9       = 0x9D,
+  ACTION_UPDATE_HOTKEY0    = 0x0C,
+  ACTION_UPDATE_HOTKEY1    = 0x1C,
+  ACTION_UPDATE_HOTKEY2    = 0x2C,
+  ACTION_UPDATE_HOTKEY3    = 0x3C,
+  ACTION_UPDATE_HOTKEY4    = 0x4C,
+  ACTION_UPDATE_HOTKEY5    = 0x5C,
+  ACTION_UPDATE_HOTKEY6    = 0x6C,
+  ACTION_UPDATE_HOTKEY7    = 0x7C,
+  ACTION_UPDATE_HOTKEY8    = 0x8C,
+  ACTION_UPDATE_HOTKEY9    = 0x9C,
 
   REPLAY_MOVE_CAMERA       = 0x81,
 
@@ -223,6 +255,8 @@ struct GameEvent
   GameEvent( timestamp_t ti=0, EventType ty=INITIALIZATION, EventFlag fl=PLAYER, player_t pl=0, EventCode co=INITIALIZATION_SPAWN )
     : timestamp(ti), type(ty), flag(fl), player(pl), code(co) {}
   
+  virtual void enable_dynamic_cast() const {}
+  
   timestamp_t timestamp;
   EventType   type;
   EventFlag   flag;
@@ -273,6 +307,12 @@ struct ActionUpdateHotkey : public GameEvent
 struct ReplayMoveCamera : public GameEvent
 {
   ReplayMoveCamera( const GameEvent& e ) : GameEvent(e) {}
+  
+  uint32_t x;
+  uint32_t y;
+  uint32_t horizontal;
+  uint32_t vertical;
+  uint32_t unknown;
 };
 
 struct InactionSynchronization : public GameEvent

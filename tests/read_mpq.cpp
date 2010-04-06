@@ -4,6 +4,8 @@
 #include "sc2replay/replay.h"
 #include "sc2replay/info.h"
 #include "sc2replay/messageevents.h"
+#include "sc2replay/gameevents.h"
+#include "sc2replay/util.h"
 
 namespace sc = sc2replay;
 
@@ -70,75 +72,126 @@ int main( int argc, char** argv )
   std::cout << std::endl << "--- Game events ---" << std::endl;
   const sc::GameEvents& gameEvents = replay.getGameEvents();
   sc::GameEvents::const_iterator it = gameEvents.begin();
+  std::cout << std::hex;
   for (; it != gameEvents.end(); ++it )
   {
-     switch ( (*it)->code )
+    switch ( (*it)->code )
+    {
+      case sc::INITIALIZATION_SPAWN:
       {
-        case sc::INITIALIZATION_SPAWN:
-        {
-          std::cout << "[INITIALIZATION_SPAWN player:" << (int)(*it)->player << "]" << std::endl;
-        } break;
-        
-        case sc::INITIALIZATION_START:
-        {
-          std::cout << "[INITIALIZATION_START]" << std::endl;
-        } break;
-        
-        case sc::ACTION_QUIT:
-        {
-          std::cout << "[ACTION_QUIT]" << std::endl;
-        } break;
-        
-        case sc::ACTION_ABILITY:
-        {
-          std::cout << "[ACTION_ABILITY]" << std::endl;
-        } break;
-        
-        case sc::ACTION_SEND_RESOURCE:
-        {
-          std::cout << "[ACTION_SEND_RESOURCE]" << std::endl;
-        } break;
-        
-        case sc::ACTION_SELECTION:
-        {
-          std::cout << "[ACTION_SELECTION]" << std::endl;
-        } break;
-        
-        case sc::ACTION_USE_HOTKEY:
-        {
-          std::cout << "[ACTION_USE_HOTKEY]" << std::endl;
-        } break;
-        
-        case sc::ACTION_UPDATE_HOTKEY:
-        {
-          std::cout << "[ACTION_UPDATE_HOTKEY]" << std::endl;
-        } break;
-        
-        case sc::REPLAY_MOVE_CAMERA:
-        {
-          std::cout << "[REPLAY_MOVE_CAMERA]" << std::endl;
-        } break;
-        
-        case sc::INACTION_SYNCHRONIZATION:
-        {
-          std::cout << "[INACTION_SYNCHRONIZATION]" << std::endl;
-        } break;
-        
-        case sc::INACTION_SEND_REQUEST:
-        {
-          std::cout << "[INACTION_SEND_REQUEST]" << std::endl;
-        } break;
-        
-        case sc::INACTION_CANCEL_REQUEST:
-        {
-          std::cout << "[INACTION_CANCEL_REQUEST]" << std::endl;
-        } break;
-        
-        case sc::SYSTEM_SYNCHRONIZATION:
-        {
-          std::cout << "[SYSTEM_SYNCHRONIZATION]" << std::endl;
-        } break;
-      }
+        const sc::InitializationSpawn* event = dynamic_cast<const sc::InitializationSpawn*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[INITIALIZATION_SPAWN player:" << (int)event->player << "]" << std::endl;
+      } break;
+      
+      case sc::INITIALIZATION_START:
+      {
+        sc::InitializationStart* event = dynamic_cast<sc::InitializationStart*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[INITIALIZATION_START]" << std::endl;
+      } break;
+      
+      case sc::ACTION_QUIT:
+      {
+        sc::ActionQuit* event = dynamic_cast<sc::ActionQuit*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_QUIT]" << std::endl;
+      } break;
+      
+      case sc::ACTION_ABILITY:
+      {
+        sc::ActionAbility* event = dynamic_cast<sc::ActionAbility*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_ABILITY]" << std::endl;
+      } break;
+      
+      case sc::ACTION_SEND_RESOURCE:
+      {
+        sc::ActionSendResource* event = dynamic_cast<sc::ActionSendResource*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_SEND_RESOURCE]" << std::endl;
+      } break;
+      
+      case sc::ACTION_SELECTION:
+      {
+        sc::ActionSelection* event = dynamic_cast<sc::ActionSelection*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_SELECTION]" << std::endl;
+      } break;
+      
+      case sc::ACTION_USE_HOTKEY0:
+      case sc::ACTION_USE_HOTKEY1:
+      case sc::ACTION_USE_HOTKEY2:
+      case sc::ACTION_USE_HOTKEY3:
+      case sc::ACTION_USE_HOTKEY4:
+      case sc::ACTION_USE_HOTKEY5:
+      case sc::ACTION_USE_HOTKEY6:
+      case sc::ACTION_USE_HOTKEY7:
+      case sc::ACTION_USE_HOTKEY8:
+      case sc::ACTION_USE_HOTKEY9:
+      {
+        sc::ActionUseHotkey* event = dynamic_cast<sc::ActionUseHotkey*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_USE_HOTKEY]" << std::endl;
+      } break;
+      
+      case sc::ACTION_UPDATE_HOTKEY0:
+      case sc::ACTION_UPDATE_HOTKEY1:
+      case sc::ACTION_UPDATE_HOTKEY2:
+      case sc::ACTION_UPDATE_HOTKEY3:
+      case sc::ACTION_UPDATE_HOTKEY4:
+      case sc::ACTION_UPDATE_HOTKEY5:
+      case sc::ACTION_UPDATE_HOTKEY6:
+      case sc::ACTION_UPDATE_HOTKEY7:
+      case sc::ACTION_UPDATE_HOTKEY8:
+      case sc::ACTION_UPDATE_HOTKEY9:
+      {
+        sc::ActionUpdateHotkey* event = dynamic_cast<sc::ActionUpdateHotkey*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[ACTION_UPDATE_HOTKEY]" << std::endl;
+      } break;
+      
+      case sc::REPLAY_MOVE_CAMERA:
+      {
+        sc::ReplayMoveCamera* event = dynamic_cast<sc::ReplayMoveCamera*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[REPLAY_MOVE_CAMERA"
+                << " p:" << (int)event->player
+                << " x:" << event->x
+                << " y:" << event->y
+                << " h:" << event->horizontal
+                << " v:" << event->vertical
+                << "]" << std::endl;
+      } break;
+      
+      case sc::INACTION_SYNCHRONIZATION:
+      {
+        sc::InactionSynchronization* event = dynamic_cast<sc::InactionSynchronization*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[INACTION_SYNCHRONIZATION]" << std::endl;
+      } break;
+      
+      case sc::INACTION_SEND_REQUEST:
+      {
+        sc::InactionSendRequest* event = dynamic_cast<sc::InactionSendRequest*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[INACTION_SEND_REQUEST]" << std::endl;
+      } break;
+      
+      case sc::INACTION_CANCEL_REQUEST:
+      {
+        sc::InactionCancelRequest* event = dynamic_cast<sc::InactionCancelRequest*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[INACTION_CANCEL_REQUEST]" << std::endl;
+      } break;
+      
+      case sc::SYSTEM_SYNCHRONIZATION:
+      {
+        sc::SystemSynchronization* event = dynamic_cast<sc::SystemSynchronization*>(*it);
+        std::cout << sc::timestampToString(event->timestamp) << " ";
+        std::cout << "[SYSTEM_SYNCHRONIZATION]" << std::endl;
+      } break;
+    }
   }
   
   return EXIT_SUCCESS;
