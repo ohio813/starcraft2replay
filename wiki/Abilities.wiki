@@ -1,6 +1,14 @@
 #summary Ability codes
-
-= Terran =
+|| *Common* ||
+|| 0x020400 || Stop ||
+|| 0x020501 || Hold fire ||
+|| 0x020600 || Move ||
+|| 0x020601 || Patrol ||
+|| 0x020602 || Hold position ||
+|| 0x020900 || Attack ||
+|| 0x060800 || Cancel ||
+|| 0x060400 || Gather ||
+|| *Terran* ||
 || 0x020400 || Stop                           ||
 || 0x020501 || Hold Fire                      ||
 || 0x020600 || Move                           ||
