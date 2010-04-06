@@ -182,7 +182,7 @@ void GameEvents::parseHeader( off_t& offset, GameEvent& event )
   timestamp_t timestamp = 0;
   if ( buffer_[offset] & 0x03 ) // 2 bytes timestamp
   {
-    timestamp = (buffer_[offset] >> 2) << 8 + buffer_[offset];
+    timestamp = (buffer_[offset] >> 2) << 8 + buffer_[offset+1];
     offset += 2;
   }
   else  // 1 byte timestamp
