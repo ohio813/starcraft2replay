@@ -9,20 +9,20 @@
 namespace sc2replay
 {
 
-class GameEvent;
-class InitializationSpawn;
-class InitializationStart;
-class ActionQuit;
-class ActionAbility;
-class ActionSendResource;
-class ActionSelection;
-class ActionUseHotkey;
-class ActionUpdateHotkey;
-class ReplayMoveCamera;
-class InactionSynchronization;
-class InactionSendRequest;
-class InactionCancelRequest;
-class SystemSynchronization;
+struct GameEvent;
+struct InitializationSpawn;
+struct InitializationStart;
+struct ActionQuit;
+struct ActionAbility;
+struct ActionSendResource;
+struct ActionSelection;
+struct ActionUseHotkey;
+struct ActionUpdateHotkey;
+struct ReplayMoveCamera;
+struct InactionSynchronization;
+struct InactionSendRequest;
+struct InactionCancelRequest;
+struct SystemSynchronization;
 
 class GameEvents
 {
