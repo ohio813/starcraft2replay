@@ -5,15 +5,15 @@
 
 == C++ Library ==
 
-*Sort out linking stuff
-*GameSyncEvents
-*SmartCam
-*GameEvents
-*Further parse replay.info
-*String lengths in replay.info (sometimes not correctly aligned)
+* Sort out linking stuff
+* GameSyncEvents
+* SmartCam
+* GameEvents
+* Further parse replay.info
+* String lengths in replay.info (sometimes not correctly aligned)
 
 == PHP extension ==
 
-*Implement GameMessages
-*Implement SyncEvents
-*Implement GameEvents
+* Implement GameMessages
+* Implement SyncEvents
+* Implement GameEvents
