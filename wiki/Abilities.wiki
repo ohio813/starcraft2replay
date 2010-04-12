@@ -1,4 +1,5 @@
 #summary Ability codes
+#labels events
 = Ability Codes =
 == Common ==
 || *Code* || *Name* ||
@@ -10,6 +11,7 @@
 || 0x020900 || Attack ||
 || 0x060800 || Cancel ||
 || 0x060400 || Gather ||
+|| 0xFFFF0F || Right-Click ||
 
 == Terran ==
 
@@ -98,238 +100,156 @@
 || 0x090505 || Upgrade Vehicle Weapons 1      ||
 || 0x090506 || Upgrade Vehicle Weapons 2      ||
 || 0x090507 || Upgrade Vehicle Weapons 3      ||
-|| 0x09050B || Upgrade Ship Weapons 1         ||
-|| 0x09050C || Upgrade Ship Weapons 2         ||
-|| 0x09050D || Upgrade Ship Weapons 3         ||
 || 0x090508 || Upgrade Ship Plating 1         ||
 || 0x090509 || Upgrade Ship Plating 2         ||
 || 0x09050A || Upgrade Ship Plating 3         ||
+|| 0x09050B || Upgrade Ship Weapons 1         ||
+|| 0x09050C || Upgrade Ship Weapons 2         ||
+|| 0x09050D || Upgrade Ship Weapons 3         ||
 || 0x0C0700 || Upgrade to Planetary Fortress  ||
 || 0x0D0600 || Research Weapon Refit          ||
 || 0x0D0601 || Research Behemoth Reactor      ||
 || 0x0D0900 || Tac Nuclear Strike             ||
 || 0x0D0C00 || EMP Round                      ||
 || 0x0F0400 || Auto-Turret                    ||
+|| 0x080301 || Build Reactor on Factory ||
+|| 0x080301 || Build Reactor on Starport ||
+
 
 == Zerg ==
 || *Code* || *Name* ||
-|| 0x?????? || ... ||
+|| 0x0a0300 || Build Hatchery ||
+|| 0x0a0302 || Build Extractor ||
+|| 0x0a0303 || Build Spawning Pool ||
+|| 0x0a0304 || Build Evolution Chamber ||
+|| 0x0a0305 || Build Hydralisk Den ||
+|| 0x0a0306 || Build Spire ||
+|| 0x0a0307 || Build Ultralisk Cavern ||
+|| 0x0a0308 || Build Infestation Pit ||
+|| 0x0a0309 || Build Nydus Network ||
+|| 0x0a030a || Build Baneling Nest ||
+|| 0x0a030d || Build Roach Warren ||
+|| 0x0a030e || Build Spine Crawler ||
+|| 0x0a030f || Build Spore Crawler ||
+|| 0x0A0500 || Research Melee Weapons 1 ||
+|| 0x0A0501 || Research Melee Weapons 2 ||
+|| 0x0A0502 || Research Melee Weapons 3 ||
+|| 0x0A0503 || Research Ground Armor 1 ||
+|| 0x0A0504 || Research Ground Armor 2 ||
+|| 0x0A0505 || Research Ground Armor 3 ||
+|| 0x0A0506 || Research Missile Weapons 1 ||
+|| 0x0A0507 || Research Missile Weapons 2 ||
+|| 0x0A0508 || Research Missile Weapons 3 ||
+|| 0x0A050A || Research Burrow ||
+|| 0x0A0600 || Build Lair ||
+|| 0x0A0700 || Build Hive ||
+|| 0x0A0800 || Research Greater Spire ||
+|| 0x0A0801 || Cancel Greater Spire Research ||
+|| 0x0A0901 || Research Overlord Speed ||
+|| 0x0A0902 || Research Ventral Sacks ||
+|| 0x0A0A00 || Research Zergling Attack Speed ||
+|| 0x0A0A01 || Research Zergling Movement Speed ||
+|| 0x0A0B02 || Research Hydralisk Speed ||
+|| 0x0A0C00 || Research Flyer Attack 1 ||
+|| 0x0A0C01 || Research Flyer Attack 2 ||
+|| 0x0A0C02 || Research Flyer Attack 3 ||
+|| 0x0A0C03 || Research Flyer Armor 1 ||
+|| 0x0A0C04 || Research Flyer Armor 2 ||
+|| 0x0A0C05 || Research Flyer Armor 3 ||
+|| 0x0a0d00 || Train Drone ||
+|| 0x0a0d01 || Train Zergling ||
+|| 0x0a0d02 || Train Overlord ||
+|| 0x0a0d03 || Train Hydralisk ||
+|| 0x0a0d04 || Train Mutalisk ||
+|| 0x0a0d06 || Train Ultralisk ||
+|| 0x0a0d09 || Train Roach ||
+|| 0x0a0d0a || Train Infestor ||
+|| 0x0a0d0b || Train Corruptor ||
+|| 0x0a0e00 || Train Broodlord ||
+|| 0x0A0E01 || Cancel BroodLord Mutation ||
+|| 0x0C0901 || Research Peristalsis ||
+|| 0x0C0902 || Research Infestor Energy Upgrade ||
+|| 0x0C0A00 || Research Centrifical Hooks ||
+|| 0x0D0E00 || Train queen ||
+|| 0x0E0D00 || Generate Creep (Overlord) ||
+|| 0x0E0F00 || Uproot (Spine Crawler) ||
+|| 0x0F0100 || Root (Spine Crawler) ||
+|| 0x0F0600 || Build Nydus Worm ||
+|| 0x030400 || Fungal Growth (Infestor) ||
+|| 0x050700 || Set rally point (Hatchery) ||
+|| 0x050701 || Set rally point for drones ||
+|| 0x050800 || Research Organic Carapace ||
+|| 0x050801 || Research Glial Regeneration ||
+|| 0x050802 || Research Tunneling Claws ||
+|| 0x050C00 || Spawn Larva (Queen) ||
+|| 0x060201 || Research Anabolic Synthesis 2 ||
+|| 0x060202 || Research Chitinous Plating ||
 
 == Protoss ==
 || *Code* || *Name* ||
-|| 0x?????? || ... ||
-
-
-
-<br/><br/>
-=New List (to be merged)=
-{{{
-            if (val == 0x020400) return "stops";
-            if (val == 0x020600) return "moves";
-            if (val == 0x020601) return "patrols";
-            if (val == 0x020602) return "holds position";
-            if (val == 0x020603) return "stops";
-            if (val == 0x020900) return "attacks";
-            if (val == 0x030300) return "researches ResearchVoidRaySpeedUpgrade";
-            if (val == 0x030301) return "researches ResearchInterceptorLaunchSpeedUpgrade";
-            if (val == 0x030400) return "uses Fungal Growth (Infestor)";
-            if (val == 0x030500) return "uses Guardian Shield (Sentry)";
-            if (val == 0x030700) return "trains a mothership";
-            if (val == 0x030D00) return "trains a Colossus Hallucination (Sentry)";
-            if (val == 0x040000) return "trains a Phoenix Hallucination (Sentry)";
-            if (val == 0x050700) return "sets rally point (Hatchery)";
-            if (val == 0x050701) return "sets rally point for drones";
-            if (val == 0x050800) return "researches EvolveOrganicCarapace";
-            if (val == 0x050801) return "researches EvolveGlialRegeneration";
-            if (val == 0x050802) return "researches EvolveTunnelingClaws";
-            if (val == 0x050C00) return "uses Spawn Larva (Queen)";
-            if (val == 0x060100) return "uses Chrono Boost";
-            if (val == 0x060201) return "researches EvolveAnabolicSynthesis2";
-            if (val == 0x060202) return "researches EvolveChitinousPlating";
-            if (val == 0x060800) return "cancels an attack";
-            if (val == 0x060B00) return "cancels a build in progress (Pylon)";
-            if (val == 0x060D00) return "builds a command center";
-            if (val == 0x060D01) return "builds a supply depot";
-            if (val == 0x060D02) return "builds a refinery";
-            if (val == 0x060D03) return "builds a barracks";
-            if (val == 0x060D04) return "builds an engineering bay";
-            if (val == 0x060D05) return "builds a missile turret";
-            if (val == 0x060D06) return "builds a bunker";
-            if (val == 0x060D08) return "builds a sensor tower";
-            if (val == 0x060D09) return "builds a ghost academy";
-            if (val == 0x060D0A) return "builds a factory";
-            if (val == 0x060D0B) return "builds a starport";
-            if (val == 0x060D0D) return "builds an armory";
-            if (val == 0x060D0F) return "builds a fusion core";
-            if (val == 0x070F00) return "builds a tech lab on barracks";
-            if (val == 0x070F01) return "builds a reactor on barracks";
-            if (val == 0x080100) return "builds a tech lab on factory";
-            if (val == 0x080300) return "builds a tech lab on starport";
-            if (val == 0x080301) return "builds a reactor on factory";
-            if (val == 0x080301) return "builds a reactor on starport";
-            if (val == 0x080700) return "trains a SCV";
-            if (val == 0x080B00) return "trains a marine";
-            if (val == 0x080B01) return "trains a reaper";
-            if (val == 0x080B02) return "trains a ghost";
-            if (val == 0x080B03) return "trains a marauder";
-            if (val == 0x080C01) return "trains a SiegeTank";
-            if (val == 0x080C04) return "trains a Thor";
-            if (val == 0x080C05) return "trains a Hellion";
-            if (val == 0x080D00) return "trains a Medivac";
-            if (val == 0x080D01) return "trains a Banshee";
-            if (val == 0x080D02) return "trains a Raven";
-            if (val == 0x080D03) return "trains a Battlecruiser";
-            if (val == 0x080D04) return "trains a VikingFighter";
-            if (val == 0x080E00) return "researches ResearchHiSecAutoTracking";
-            if (val == 0x080E01) return "researches UpgradeBuildingArmorLevel1";
-            if (val == 0x080E02) return "researches TerranInfantryWeaponsLevel1";
-            if (val == 0x080E03) return "researches TerranInfantryWeaponsLevel2";
-            if (val == 0x080E04) return "researches TerranInfantryWeaponsLevel3";
-            if (val == 0x080E05) return "researches ResearchNeosteelFrame";
-            if (val == 0x080E06) return "researches TerranInfantryArmorLevel1";
-            if (val == 0x080E07) return "researches TerranInfantryArmorLevel2";
-            if (val == 0x080E08) return "researches TerranInfantryArmorLevel3";
-            if (val == 0x080F03) return "researches ReaperSpeed";
-            if (val == 0x090000) return "researches NukeArm";
-            if (val == 0x090100) return "researches StimPack";
-            if (val == 0x090101) return "researches ResearchShieldWall";
-            if (val == 0x090200) return "researches ResearchSiegeTech";
-            if (val == 0x090201) return "researches ResearchHighCapacityBarrels";
-            if (val == 0x090300) return "researches ResearchBansheeCloak";
-            if (val == 0x090302) return "researches ResearchMedivacEnergyUpgrade";
-            if (val == 0x090303) return "researches ResearchRavenEnergyUpgrade";
-            if (val == 0x090306) return "researches ResearchSeekerMissile";
-            if (val == 0x090307) return "researches ResearchDurableMaterials";
-            if (val == 0x090400) return "researches ResearchPersonalCloaking";
-            if (val == 0x090401) return "researches ResearchGhostEnergyUpgrade";
-            if (val == 0x090502) return "researches TerranVehiclePlatingLevel1";
-            if (val == 0x090503) return "researches TerranVehiclePlatingLevel2";
-            if (val == 0x090504) return "researches TerranVehiclePlatingLevel3";
-            if (val == 0x090505) return "researches TerranVehicleWeaponsLevel1";
-            if (val == 0x090506) return "researches TerranVehicleWeaponsLevel2";
-            if (val == 0x090507) return "researches TerranVehicleWeaponsLevel3";
-            if (val == 0x090508) return "researches TerranShipPlatingLevel1";
-            if (val == 0x090509) return "researches TerranShipPlatingLevel2";
-            if (val == 0x09050A) return "researches TerranShipPlatingLevel3";
-            if (val == 0x09050B) return "researches TerranShipWeaponsLevel1";
-            if (val == 0x09050C) return "researches TerranShipWeaponsLevel2";
-            if (val == 0x09050D) return "researches TerranShipWeaponsLevel3";
-            if (val == 0x090600) return "builds a nexus";
-            if (val == 0x090601) return "builds a pylon";
-            if (val == 0x090602) return "builds an assimilator";
-            if (val == 0x090603) return "builds a gateway";
-            if (val == 0x090604) return "builds a forge";
-            if (val == 0x090605) return "builds a fleet beacon";
-            if (val == 0x090606) return "builds a twilight council";
-            if (val == 0x090607) return "builds a photon canon";
-            if (val == 0x090609) return "builds a stargate";
-            if (val == 0x09060A) return "builds a templar archive";
-            if (val == 0x09060B) return "builds a dark shrine";
-            if (val == 0x09060C) return "builds a robotics bay";
-            if (val == 0x09060D) return "builds a robotics facility";
-            if (val == 0x09060E) return "builds a cybenetics core";
-            if (val == 0x090800) return "trains a zealot";
-            if (val == 0x090801) return "trains a stalker";
-            if (val == 0x090803) return "trains a high templar";
-            if (val == 0x090804) return "trains a dark templar";
-            if (val == 0x090805) return "trains a sentry /disruptor";
-            if (val == 0x090900) return "trains a Phoenix";
-            if (val == 0x090902) return "trains a Carrier";
-            if (val == 0x090904) return "trains a VoidRay";
-            if (val == 0x090A00) return "trains a WarpPrism";
-            if (val == 0x090A01) return "trains an Observer";
-            if (val == 0x090A02) return "trains a Colossus";
-            if (val == 0x090A03) return "trains an Immortal";
-            if (val == 0x090B00) return "trains a probe";
-            if (val == 0x0A0000) return "researches ProtossGroundWeaponsLevel1";
-            if (val == 0x0A0001) return "researches ProtossGroundWeaponsLevel2";
-            if (val == 0x0A0002) return "researches ProtossGroundWeaponsLevel3";
-            if (val == 0x0A0003) return "researches ProtossGroundArmorLevel1";
-            if (val == 0x0A0004) return "researches ProtossGroundArmorLevel2";
-            if (val == 0x0A0005) return "researches ProtossGroundArmorLevel3";
-            if (val == 0x0A0006) return "researches ProtossShieldsLevel1";
-            if (val == 0x0A0007) return "researches ProtossShieldsLevel2";
-            if (val == 0x0A0008) return "researches ProtossShieldsLevel3";
-            if (val == 0x0A0101) return "researches ResearchGraviticBooster";
-            if (val == 0x0A0102) return "researches ResearchGraviticDrive";
-            if (val == 0x0A0105) return "researches ResearchExtendedThermalLance";
-            if (val == 0x0A0200) return "researches ResearchHighTemplarEnergyUpgrade";
-            if (val == 0x0A0204) return "researches ResearchPsiStorm";
-            if (val == 0x0A0300) return "builds a hatchery";
-            if (val == 0x0A0302) return "builds an extractor";
-            if (val == 0x0A0303) return "builds a spawning pool";
-            if (val == 0x0A0304) return "builds an evolution chamber";
-            if (val == 0x0A0305) return "builds a hydralisk den";
-            if (val == 0x0A0306) return "builds a spire";
-            if (val == 0x0A0307) return "builds an ultralisk cavern";
-            if (val == 0x0A0308) return "builds an infestation pit";
-            if (val == 0x0A0309) return "builds a nydus network";
-            if (val == 0x0A030A) return "builds a baneling nest";
-            if (val == 0x0A030D) return "builds a roach warren";
-            if (val == 0x0A030E) return "builds a spine crawler";
-            if (val == 0x0A030F) return "builds a spore crawler";
-            if (val == 0x0A0500) return "researches zergmeleeweapons1";
-            if (val == 0x0A0501) return "researches zergmeleeweapons2";
-            if (val == 0x0A0502) return "researches zergmeleeweapons3";
-            if (val == 0x0A0503) return "researches zerggroundarmor1";
-            if (val == 0x0A0504) return "researches zerggroundarmor2";
-            if (val == 0x0A0505) return "researches zerggroundarmor3";
-            if (val == 0x0A0506) return "researches zergmissileweapons1";
-            if (val == 0x0A0507) return "researches zergmissileweapons2";
-            if (val == 0x0A0508) return "researches zergmissileweapons3";
-            if (val == 0x0A050A) return "researches ResearchBurrow";
-            if (val == 0x0A0600) return "builds a lair";
-            if (val == 0x0A0700) return "builds a hive";
-            if (val == 0x0A0800) return "researches GreaterSpire";
-            if (val == 0x0A0801) return "cancels GreaterSpire research";
-            if (val == 0x0A0901) return "researches overlordspeed";
-            if (val == 0x0A0902) return "researches EvolveVentralSacks";
-            if (val == 0x0A0A00) return "researches zerglingattackspeed";
-            if (val == 0x0A0A01) return "researches zerglingmovementspeed";
-            if (val == 0x0A0B02) return "researches hydraliskspeed";
-            if (val == 0x0A0C00) return "researches zergflyerattack1";
-            if (val == 0x0A0C01) return "researches zergflyerattack2";
-            if (val == 0x0A0C02) return "researches zergflyerattack3";
-            if (val == 0x0A0C03) return "researches zergflyerarmor1";
-            if (val == 0x0A0C04) return "researches zergflyerarmor2";
-            if (val == 0x0A0C05) return "researches zergflyerarmor3";
-            if (val == 0x0A0D00) return "trains a drone";
-            if (val == 0x0A0D01) return "trains a zergling";
-            if (val == 0x0A0D02) return "trains an overlord";
-            if (val == 0x0A0D03) return "trains a hydralisk";
-            if (val == 0x0A0D04) return "trains a mutalisk";
-            if (val == 0x0A0D06) return "trains an ultralisk";
-            if (val == 0x0A0D09) return "trains a roach";
-            if (val == 0x0A0D0A) return "trains an infestor";
-            if (val == 0x0A0D0B) return "trains a corruptor";
-            if (val == 0x0A0E00) return "trains a BroodLord";
-            if (val == 0x0A0E01) return "cancels BroodLord mutation";
-            if (val == 0x0B0E00) return "trains a zealot (Warp Gate)";
-            if (val == 0x0B0E01) return "trains a stalker (Warp Gate)";
-            if (val == 0x0B0E03) return "trains a high templar (Warp Gate)";
-            if (val == 0x0B0E04) return "trains a dark templar (Warp Gate)";
-            if (val == 0x0B0E05) return "trains a sentry (Warp Gate)";
-            if (val == 0x0C0901) return "researches EvolvePeristalsis";
-            if (val == 0x0C0902) return "researches EvolveInfestorEnergyUpgrade";
-            if (val == 0x0C0A00) return "researches EvolveCentrificalHooks";
-            if (val == 0x0C0F00) return "upgrades to Warp Gate";
-            if (val == 0x0D0300) return "uses Force Field (Sentry)";
-            if (val == 0x0D0600) return "researches ResearchBattlecruiserSpecializations";
-            if (val == 0x0D0601) return "researches ResearchBattlecruiserEnergyUpgrade";
-            if (val == 0x0D0700) return "researches ProtossAirWeaponsLevel1";
-            if (val == 0x0D0701) return "researches ProtossAirWeaponsLevel2";
-            if (val == 0x0D0702) return "researches ProtossAirWeaponsLevel3";
-            if (val == 0x0D0703) return "researches ProtossAirArmorLevel1";
-            if (val == 0x0D0704) return "researches ProtossAirArmorLevel2";
-            if (val == 0x0D0705) return "researches ProtossAirArmorLevel3";
-            if (val == 0x0D0706) return "researches ResearchWarpGate";
-            if (val == 0x0D0709) return "researches ResearchHallucination";
-            if (val == 0x0D0800) return "researches ResearchCharge";
-            if (val == 0x0D0801) return "researches ResearchCharge";
-            if (val == 0x0D0E00) return "trains a queen";
-            if (val == 0x0E0D00) return "uses Generate Creep (Overlord)";
-            if (val == 0x0E0F00) return "uproots (Spine Crawler)";
-            if (val == 0x0F0100) return "roots (Spine Crawler)";
-            if (val == 0x0F0600) return "builds a Nydus Worm";
-            if (val == 0xFFFF0F) return "right-clicks";
-}}}
+|| 0x090600 || Build Nexus ||
+|| 0x090601 || Build Pylon ||
+|| 0x090602 || Build Assimilator ||
+|| 0x090603 || Build Gateway ||
+|| 0x090604 || Build Forge ||
+|| 0x090605 || Build Fleet Beacon ||
+|| 0x090606 || Build Twilight Council ||
+|| 0x090607 || Build Photon Canon ||
+|| 0x090609 || Build Stargate ||
+|| 0x09060a || Build Templar Archive ||
+|| 0x09060b || Build Dark Shrine ||
+|| 0x09060c || Build Robotics Bay ||
+|| 0x09060d || Build Robotics Facility ||
+|| 0x09060e || Build Cybenetics Core ||
+|| 0x090800 || Train Zealot ||
+|| 0x090801 || Train Stalker ||
+|| 0x090803 || Train High Templar ||
+|| 0x090804 || Train Dark Templar ||
+|| 0x090805 || Train Sentry /Disruptor ||
+|| 0x090900 || Train Phoenix ||
+|| 0x090902 || Train Carrier ||
+|| 0x090904 || Train Voidray ||
+|| 0x090a00 || Train Warpprism ||
+|| 0x090a01 || Train Observer ||
+|| 0x090a02 || Train Colossus ||
+|| 0x090a03 || Train Immortal ||
+|| 0x090b00 || Train Probe ||
+|| 0x0A0000 || Research Ground Weapons Level 1 ||
+|| 0x0A0001 || Research Ground Weapons Level 2 ||
+|| 0x0A0002 || Research Ground Weapons Level 3 ||
+|| 0x0A0003 || Research Ground Armor Level 1 ||
+|| 0x0A0004 || Research Ground Armor Level 2 ||
+|| 0x0A0005 || Research Ground Armor Level 3 ||
+|| 0x0A0006 || Research Shields Level1 ||
+|| 0x0A0007 || Research Shields Level2 ||
+|| 0x0A0008 || Research Shields Level3 ||
+|| 0x0A0101 || Research Gravitic Booster ||
+|| 0x0A0102 || Research Gravitic Drive ||
+|| 0x0A0105 || Research Extended Thermal Lance ||
+|| 0x0A0200 || Research High Templar Energy Upgrade ||
+|| 0x0A0204 || Research Psi Storm ||
+|| 0x0b0e00 || Train Zealot (Warp Gate) ||
+|| 0x0b0e01 || Train Stalker (Warp Gate) ||
+|| 0x0b0e03 || Train High Templar (Warp Gate) ||
+|| 0x0b0e04 || Train Dark Templar (Warp Gate) ||
+|| 0x0b0e05 || Train Sentry (Warp Gate) ||
+|| 0x0C0F00 || Upgrade to Warp Gate ||
+|| 0x0D0300 || Force Field (Sentry) ||
+|| 0x0D0700 || Research Air Weapons Level 1 ||
+|| 0x0D0701 || Research Air Weapons Level 2 ||
+|| 0x0D0702 || Research Air Weapons Level 3 ||
+|| 0x0D0703 || Research Air Armor Level 1 ||
+|| 0x0D0704 || Research Air Armor Level 2 ||
+|| 0x0D0705 || Research Air Armor Level 3 ||
+|| 0x0D0706 || Research Warp Gate ||
+|| 0x0D0709 || Research Hallucination ||
+|| 0x0D0800 || Research Charge ||
+|| 0x0D0801 || Research Charge ||
+|| 0x030300 || Research Void Ray Speed Upgrade ||
+|| 0x030301 || Research Interceptor Launch Speed Upgrade ||
+|| 0x030500 || Guardian Shield (Sentry) ||
+|| 0x030700 || Train Mothership ||
+|| 0x030D00 || Train Colossus Hallucination (Sentry) ||
+|| 0x040000 || Train Phoenix Hallucination (Sentry) ||
+|| 0x060100 || Chrono Boost ||
+|| 0x060B00 || Cancel a build in progress (Pylon) ||
