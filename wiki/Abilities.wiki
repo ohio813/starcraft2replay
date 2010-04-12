@@ -1,7 +1,7 @@
 #summary Ability codes
 = Ability Codes =
 == Common ==
-|| Code || Name ||
+|| *Code* || *Name* ||
 || 0x020400 || Stop ||
 || 0x020501 || Hold fire ||
 || 0x020600 || Move ||
@@ -13,7 +13,7 @@
 
 == Terran ==
 
-|| Code || Name ||
+|| *Code* || *Name* ||
 || 0x030A00 || Point Defense Drone            ||
 || 0x040700 || Seeker Missile                 ||
 || 0x050500 || Set rally point                ||
@@ -110,12 +110,15 @@
 || 0x0D0900 || Tac Nuclear Strike             ||
 || 0x0D0C00 || EMP Round                      ||
 || 0x0F0400 || Auto-Turret                    ||
+
 == Zerg ==
-|| Code || Name ||
+|| *Code* || *Name* ||
 || 0x?????? || ... ||
+
 == Protoss ==
-|| Code || Name ||
+|| *Code* || *Name* ||
 || 0x?????? || ... ||
+
 
 
 <br/><br/>
