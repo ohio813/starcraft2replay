@@ -1,14 +1,17 @@
 #summary README
+#labels readme
 
-= Getting the source code =
+= Readme =
+
+== Getting the source code ==
 
 {{{
 svn checkout https://starcraft2replay.googlecode.com/svn/trunk/ starcraft2replay
 }}}
 
-= Building =
+== Building ==
 
-== Materials ==
+=== Materials ===
 
 In order to build starcraft2replay parser, you will need:
   * An library to uncompress MPQ files:
@@ -17,7 +20,7 @@ In order to build starcraft2replay parser, you will need:
   * CMake : http://www.cmake.org/
   * Boost Python (if you want the bindings) : http://www.boost.org/doc/libs/1_42_0/libs/python/doc/index.html
 
-== Building on linux ==
+=== Building on linux ===
 
 Head to the root directory of the project, and create a subdirectory name "build".
 
@@ -53,6 +56,6 @@ cd tests
 ./read_mpq myreplay.SC2Replay
 }}}
 
-== Building on Windows ==
+=== Building on Windows ===
 
-Not tested yet... Should work _almost_ out of the box. Use CMake-GUI to generate a Visual Studio project or MinGW Makefile.
+Use CMake-GUI to generate a Visual Studio project or MinGW Makefile. Minor tweaks may be required.
