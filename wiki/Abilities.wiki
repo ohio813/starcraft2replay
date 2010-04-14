@@ -1,5 +1,20 @@
 #summary Ability codes
 #labels events
+
+==Warning:==
+Patch 1 (or patch 2) changed the AbilCmd codes.
+
+All codes presented in this page are only valid for replays recorded *after* February 27th.
+
+For replays created with build 13891, another set of codes has to be used (most of the time, those codes were `[`_current code minus 2 on second byte_`]`)
+
+Example:
+ * before February 25th, code for training a Zergling was 0A *0B* 01.
+ * after February 27th, code changed to 0A *0D* 01. This is still valid today and this is what you find on this page.
+
+More investigations needed to check if the codes changed with patch 1 or with patch 2.
+
+<br/><br/>
 = Ability Codes =
 == Common ==
 || *Code* || *Name* ||
