@@ -1,0 +1,17 @@
+#summary The Starcraft 2 specific header of the MPQ file.
+#labels MPQ,header
+
+= Replay File Header =
+
+As you may have noticed the Starcraft 2 Replay file is a MPQ file, but it's not a plain MPQ file since the actual MPQ data starts at offset 0x400. The first first 1024 bytes contain some extra data.
+
+|| *Location*           || *Meaning*                                                  ||
+|| 0x00-0x03            || "MPQ" + 0x1B                                               ||
+|| 0x04-0x09            || Unknown                                                    ||
+|| 0x10                 || Length of the following string (15 for Starcraft 2 Replay) ||
+|| 0x11-0x11+length     || "Starcraft 2 Replay" + 0x1B + 0x32                         ||
+|| 0x26-0x27            || 0x01 0x00                                                  ||
+|| 0x28                 || Major version (Initial release = 2, patch 8 = 10)          ||
+|| 0x29-0x2B            || 0x00 0x00 0x00                                             ||
+|| 0x2C-0x2D            || Build number (corresponds to the folders versions)         ||
+|| continue...          || continue...                                                ||
