@@ -23,7 +23,8 @@ MPQArchiveImpl::MPQArchiveImpl()
 MPQArchiveImpl::~MPQArchiveImpl()
 {
 #ifdef BUILD_LIBMPQ
-  libmpq__archive_close( archive_ );
+  if ( archive_!=0 ) // sanity check, libmpq will crash if archive is null
+    libmpq__archive_close( archive_ );
 #else // StormLib
 #endif
 }
