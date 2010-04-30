@@ -23,8 +23,8 @@
 
 || *attributeId* || *Meaning* || *Comments* ||
 || "F4 01" || Player Type || Might be "Humn" for Human or "Comp" for AI ||
-|| "B9 0B" || Race || "Prot", "Terr" or "Zerg" ||
-|| "D1 07" || Game Type || "1v1" or "2v2" ||
-|| "BB 0B" || Handicap || ? ||
-
-Information about the player team ("1T" or "2T") is also found in several places, all of them with attributeId ending in "xx 07".
+|| "B9 0B" || Race || "Prot", "Terr", "Zerg" or "RAND"<br/>When race is RAND, use replay.details to find out the final race. ||
+|| "D1 07" || Game Format || "1v1" or "2v2" ||
+|| "BB 0B" || Handicap? || ? ||
+|| "D3 07" || Team? || "T1" for Team1, "T2" for Team2, ... ||
+|| "B8 0B" || Game Speed? || ? ||
